@@ -24,7 +24,7 @@ import (
 )
 
 // Output data format choices:
-var formatChoices = []string{"influx-bulk", "es-bulk", "cassandra", "mongo"}
+var formatChoices = []string{"influx-bulk", "es-bulk", "cassandra", "mongo", "timely"}
 
 // Use case choices:
 var useCaseChoices = []string{"devops", "iot"}
@@ -124,8 +124,10 @@ func main() {
 		serializer = (*Point).SerializeESBulk
 	case "cassandra":
 		serializer = (*Point).SerializeCassandra
-	case "mongo":
-		serializer = (*Point).SerializeMongo
+	//case "mongo":
+	//	serializer = (*Point).SerializeMongo
+	case "timely":
+		serializer = (*Point).SerializeTimely
 	default:
 		panic("unreachable")
 	}
